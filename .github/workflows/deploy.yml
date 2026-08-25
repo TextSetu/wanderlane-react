@@ -20,6 +20,20 @@ jobs:
                   node-version: 22
                   cache: pnpm
             - run: pnpm install --frozen-lockfile
+            # ⚠️ An undefined `vars.*` substitutes an EMPTY STRING, not nothing.
+            # That used to inline `""` as the manifest URL, and `fetch("")`
+            # resolves against the current document — so the app fetched its own
+            # shell, got a 200, and silently never updated. The code now falls
+            # back to a default, but a deploy that quietly ignores its own
+            # configuration is still worth saying out loud.
+            - name: Check the manifest URL is configured
+              run: |
+                  if [ -z "${{ vars.OTA_MANIFEST_URL }}" ]; then
+                    echo "::warning::OTA_MANIFEST_URL is not set (Settings -> Secrets and variables -> Actions -> Variables). Building against the default baked into src/i18n/config.ts."
+                  else
+                    echo "Building against ${{ vars.OTA_MANIFEST_URL }}"
+                  fi
+
             - run: pnpm build
               env:
                   VITE_OTA_MANIFEST_URL: ${{ vars.OTA_MANIFEST_URL }}
