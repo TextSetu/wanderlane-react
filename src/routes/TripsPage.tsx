@@ -38,12 +38,18 @@ export default function TripsPage() {
      * would print "in 3 months" against all five stops. Weekday plus clock time
      * is what a reader of an itinerary actually wants, and `Intl` knows both in
      * every language.
+     *
+     * ⚠️ In the TRIP'S zone, not the reader's. `Intl.DateTimeFormat` defaults to
+     * wherever the browser is, and dinner in Marrakech is at 19:30 in Marrakech
+     * however far away you are planning from.
      */
-    const stopTime = new Intl.DateTimeFormat(i18n.language, {
-        weekday: 'short',
-        hour: 'numeric',
-        minute: '2-digit',
-    });
+    const stopTime = (trip: (typeof trips)[number]) =>
+        new Intl.DateTimeFormat(i18n.language, {
+            weekday: 'short',
+            hour: 'numeric',
+            minute: '2-digit',
+            timeZone: trip.timeZone,
+        });
 
     return (
         <Page title={t('trips:title')} intro={t('trips:intro')}>
@@ -153,7 +159,7 @@ export default function TripsPage() {
                                                 className="flex gap-3 text-sm text-ink-soft"
                                             >
                                                 <span className="w-28 shrink-0 tabular-nums text-sand-600">
-                                                    {stopTime.format(new Date(stop.at))}
+                                                    {stopTime(trip).format(new Date(stop.at))}
                                                 </span>
                                                 <span>{t(`itinerary:items.${stop.key}.title`)}</span>
                                             </li>

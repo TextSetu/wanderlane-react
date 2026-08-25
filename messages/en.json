@@ -130,7 +130,8 @@
             "all": "Whole trip",
             "showing": "{{count}} stop",
             "showing_other": "{{count}} stops"
-        }
+        },
+        "localTime": "All times are local to the stay ({{zone}})."
     },
     "messages": {
         "title": "Messages",

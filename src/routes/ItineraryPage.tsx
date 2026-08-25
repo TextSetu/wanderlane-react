@@ -10,8 +10,24 @@ export default function ItineraryPage() {
     const relative = useRelativeTime();
     const [day, setDay] = useState<number | null>(null);
 
-    const time = new Intl.DateTimeFormat(i18n.language, { timeStyle: 'short' });
     const trip = trips[0]!;
+    /**
+     * ⚠️ In the STAY'S zone, not the reader's. Without `timeZone` this formats
+     * in whatever zone the browser is in, so a 16:00 check-in in Marrakech reads
+     * as 15:00 to someone planning from London and 00:00 to someone in Tokyo —
+     * correct arithmetic, useless itinerary. `timeZoneName` is shown so the
+     * reader can see which clock they are looking at.
+     */
+    const time = new Intl.DateTimeFormat(i18n.language, {
+        timeStyle: 'short',
+        timeZone: trip.timeZone,
+    });
+    const zoneLabel = new Intl.DateTimeFormat(i18n.language, {
+        timeZone: trip.timeZone,
+        timeZoneName: 'short',
+    })
+        .formatToParts(new Date(trip.from))
+        .find((part) => part.type === 'timeZoneName')?.value;
 
     const days = [...new Set(itinerary.map((item) => item.day))];
     const shown = day === null ? itinerary : itinerary.filter((item) => item.day === day);
@@ -46,6 +62,12 @@ export default function ItineraryPage() {
                 <span className="ms-auto text-sm text-sand-600" aria-live="polite">
                     {t('itinerary:filter.showing', { count: shown.length })}
                 </span>
+            </div>
+
+            <div className="mt-3">
+                <p className="text-xs text-sand-600">
+                    {t('itinerary:localTime', { zone: zoneLabel ?? trip.timeZone })}
+                </p>
             </div>
 
             <div className="mt-8 space-y-6">

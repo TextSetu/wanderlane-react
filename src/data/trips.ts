@@ -20,6 +20,16 @@ export interface Trip {
     nights: number;
     reference: string;
     /**
+     * The IANA zone the stay is in.
+     *
+     * ⚠️ Load-bearing, not decoration. An itinerary is a list of local times:
+     * dinner is at 19:30 in Marrakech whatever zone the reader is sitting in.
+     * `Intl.DateTimeFormat` defaults to the BROWSER's zone, so without this a
+     * traveller planning from London saw "Dinner on the roof, Sun 1:00 AM" —
+     * arithmetic that is perfectly correct and an answer nobody wanted.
+     */
+    timeZone: string;
+    /**
      * The booked amount, in EUR. ⚠️ The DISPLAY currency is a user preference
      * (see lib/preferences.tsx) and nothing here converts — switching it
      * restates the same number, which is honest for a demo and would be a bug
@@ -34,16 +44,19 @@ export const trips: Trip[] = [
         id: 't1', stay: 'riad-zitoun', city: 'marrakech',
         from: '2026-11-14', to: '2026-11-19', guests: 4, nights: 5,
         reference: 'WL-4471-MRK', totalEur: 1240, status: 'confirmed',
+        timeZone: 'Africa/Casablanca',
     },
     {
         id: 't2', stay: 'machiya-nishijin', city: 'kyoto',
         from: '2027-03-28', to: '2027-04-04', guests: 2, nights: 7,
         reference: 'WL-5093-KYO', totalEur: 2310, status: 'awaiting_balance',
+        timeZone: 'Asia/Tokyo',
     },
     {
         id: 't3', stay: 'alfama-atelier', city: 'lisbon',
         from: '2026-05-02', to: '2026-05-05', guests: 1, nights: 3,
         reference: 'WL-3810-LIS', totalEur: 465, status: 'past',
+        timeZone: 'Europe/Lisbon',
     },
 ];
 
