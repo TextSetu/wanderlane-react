@@ -1,5 +1,5 @@
 const FALLBACK_MANIFEST_URL =
-    'https://cdn.textsetu.com/REPLACE_WITH_WANDERLANE_REACT_PUBLIC_KEY/manifest.json';
+    'https://cdn.textsetu.com/250a90778463a29ae0997432085f5711/manifest.json';
 
 /**
  * Treat blank as unset.
