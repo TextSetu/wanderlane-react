@@ -1,0 +1,66 @@
+{
+    "_generated": "scripts/fetch-photos.mjs — do not edit by hand",
+    "_note": "Photography credits, rendered on /about/. The Unsplash licence does not require attribution; we attribute anyway, because a brand claiming to be reputable should behave like one — and because a reader who wants the original should be one click away.",
+    "photos": [
+        {
+            "id": "jUxMsNZZCJ8",
+            "photographer": "Caleb Jack",
+            "profileUrl": "https://unsplash.com/@hitthetrailjack",
+            "photoUrl": "https://unsplash.com/photos/a-stone-path-leading-to-a-building-with-a-clock-tower-in-the-background-jUxMsNZZCJ8",
+            "license": "Unsplash",
+            "usedBy": [
+                "cities/kyoto-card"
+            ]
+        },
+        {
+            "id": "XeHV9a4ArdA",
+            "photographer": "diego fabra",
+            "profileUrl": "https://unsplash.com/@armada42",
+            "photoUrl": "https://unsplash.com/photos/colorful-spices-displayed-in-conical-piles-at-a-market-XeHV9a4ArdA",
+            "license": "Unsplash",
+            "usedBy": [
+                "cities/marrakech-card"
+            ]
+        },
+        {
+            "id": "uMrKrQ-afIc",
+            "photographer": "JD-Photos",
+            "profileUrl": "https://unsplash.com/@jd_photo",
+            "photoUrl": "https://unsplash.com/photos/traditional-japanese-room-with-tatami-mats-low-table-and-sofa-uMrKrQ-afIc",
+            "license": "Unsplash",
+            "usedBy": [
+                "stays/machiya-nishijin-hero"
+            ]
+        },
+        {
+            "id": "Gk0MAP8A7Cw",
+            "photographer": "Kelcie Papp",
+            "profileUrl": "https://unsplash.com/@studiogene",
+            "photoUrl": "https://unsplash.com/photos/white-and-brown-bedspread-Gk0MAP8A7Cw",
+            "license": "Unsplash",
+            "usedBy": [
+                "stays/alfama-atelier-hero"
+            ]
+        },
+        {
+            "id": "1jWrspkfhPg",
+            "photographer": "Nijat Hajiyev",
+            "profileUrl": "https://unsplash.com/@nijatnn",
+            "photoUrl": "https://unsplash.com/photos/a-view-of-a-city-with-red-roofs-1jWrspkfhPg",
+            "license": "Unsplash",
+            "usedBy": [
+                "cities/lisbon-card"
+            ]
+        },
+        {
+            "id": "Kloc39u0yhk",
+            "photographer": "Simon Gagner",
+            "profileUrl": "https://unsplash.com/@trendscope_se",
+            "photoUrl": "https://unsplash.com/photos/traditional-courtyard-with-intricate-wooden-screens-and-pink-walls-Kloc39u0yhk",
+            "license": "Unsplash",
+            "usedBy": [
+                "stays/riad-zitoun-hero"
+            ]
+        }
+    ]
+}

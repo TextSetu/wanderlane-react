@@ -19,6 +19,12 @@ export interface Trip {
     guests: number;
     nights: number;
     reference: string;
+    /**
+     * The booked amount, in EUR. ⚠️ The DISPLAY currency is a user preference
+     * (see lib/preferences.tsx) and nothing here converts — switching it
+     * restates the same number, which is honest for a demo and would be a bug
+     * in a product that took money.
+     */
     totalEur: number;
     status: 'confirmed' | 'awaiting_balance' | 'past';
 }

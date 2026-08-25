@@ -5,6 +5,7 @@ import App from './App';
 import './i18n';
 import './index.css';
 import { RouteFallback } from './components/ui';
+import { PreferencesProvider } from './lib/preferences';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')!).render(
           so this boundary is only really exercised on a language switch.
         */}
         <Suspense fallback={<RouteFallback />}>
-            <App />
+            <PreferencesProvider>
+                <App />
+            </PreferencesProvider>
         </Suspense>
     </StrictMode>,
 );

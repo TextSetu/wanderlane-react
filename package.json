@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "type": "module",
-    "description": "Wanderlane traveller app — a reference integration of TextSetu content delivery (OTA) in a Vite + React SPA, where a newly published language needs no rebuild.",
+    "description": "Wanderlane traveller app \u2014 a reference integration of TextSetu content delivery (OTA) in a Vite + React SPA, where a newly published language needs no rebuild.",
     "license": "MIT",
     "packageManager": "pnpm@10.30.0",
     "engines": {
@@ -14,7 +14,8 @@
         "build": "tsc -b && vite build",
         "preview": "vite preview --port 3030",
         "typecheck": "tsc -b",
-        "check": "tsc -b"
+        "check": "tsc -b",
+        "photos": "node scripts/fetch-photos.mjs"
     },
     "dependencies": {
         "i18next": "^26.3.4",
@@ -24,14 +25,15 @@
         "react-router-dom": "^7.9.5"
     },
     "devDependencies": {
+        "@tailwindcss/vite": "4.1.14",
+        "@types/node": "24.7.0",
         "@types/react": "19.1.9",
         "@types/react-dom": "19.1.7",
         "@vitejs/plugin-react": "^5.1.1",
+        "sharp": "^0.35.3",
         "tailwindcss": "4.1.14",
-        "@tailwindcss/vite": "4.1.14",
         "typescript": "5.9.3",
-        "vite": "^7.2.4",
-        "@types/node": "24.7.0"
+        "vite": "^7.2.4"
     },
     "pnpm": {
         "onlyBuiltDependencies": [

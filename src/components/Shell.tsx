@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { OtaPanel } from './OtaPanel';
 import type { OtaLanguage } from '@/i18n/types';
 
 const NAV = [
@@ -56,13 +57,11 @@ export function Shell({
             </main>
 
             <footer className="mt-12 border-t border-sand-200 bg-white">
-                <div className="mx-auto w-full max-w-4xl px-5 py-6 text-xs text-sand-600">
-                    <p>{t('footer.disclaimer')}</p>
-                    {releaseVersion !== null && (
-                        // Deliberately visible: it makes "publish, and it changed"
-                        // demonstrable rather than something you take on trust.
-                        <p className="mt-1">{t('footer.release', { version: releaseVersion })}</p>
-                    )}
+                <div className="mx-auto flex w-full max-w-4xl flex-wrap items-end justify-between gap-6 px-5 py-6">
+                    <p className="max-w-md text-xs text-sand-600">{t('footer.disclaimer')}</p>
+                    {/* Deliberately visible: it makes "publish, and it changed"
+                        demonstrable rather than something you take on trust. */}
+                    <OtaPanel languages={languages} releaseVersion={releaseVersion} />
                 </div>
             </footer>
         </div>

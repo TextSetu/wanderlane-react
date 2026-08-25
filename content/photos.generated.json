@@ -1,0 +1,36 @@
+{
+    "_generated": "scripts/fetch-photos.mjs — do not edit by hand",
+    "_note": "Inline 24px previews, one per image slot. Painted behind the real photo so a slow connection sees the shape of the image rather than an empty box, with no JavaScript involved.",
+    "previews": {
+        "cities/kyoto-card": {
+            "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JaACdACP7TuKcWOV6/1tz4AD+n8SNZYMTEqdtLrRU9u8I9UeWBwMAR2WKNa7UD/BBAPvGlTCqWUhStKfBF56BXxPtXgdUNYGEhQNA+X0A//2WREQhTg07sd9IF6FN0qWFlzEfIdtOewQ+fKxcjlvNFDxlWKhMCMb3kVGKlNVahimaUwAAAA==",
+            "width": 1200,
+            "height": 800
+        },
+        "cities/lisbon-card": {
+            "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAADQAwCdASoYABAAPu1iqU2ppaQiMAgBMB2JYgCdAB6tvkgwsQT+hmYA/G1LtflrJyeZlkBUdaDVOx/IwQheoZFXd3E1485kemUW82lh6jQqZxpgq9K1enIz1FKwOtw4vTiK4dXM6oNPMrl7xDx27gMxdrm2mjX4oenE3+1AAAA=",
+            "width": 1200,
+            "height": 800
+        },
+        "cities/marrakech-card": {
+            "lqip": "data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAAAwBQCdASoYABAAPu1iqU2ppaOiMAgBMB2JbACdMoHgAKoFAB7rjA5kctU+JyQ4e2di8AD9l/x/cOPCDoUZnZWQh3wy6im7SoO/sAMoRBjYRFQlSPDc3UQ46JgeCZim4Zes/g29UAbrNnvOLW9+wM/POD9w7mPs6HdkTqxUU0zuDA5YnYrX8AUsZ8gFC1DEXIUIaa94qitoi1Kevn/3E+vOuwK8eNN5PhaZp9RrJh1A3P2WEMLMAvL04w4Dee99LetcCazvZvalXPi5BMAAAA==",
+            "width": 1200,
+            "height": 800
+        },
+        "stays/alfama-atelier-hero": {
+            "lqip": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAACwAwCdASoYAA0APu1iqU2ppaOiMAgBMB2JYgCw7CHKVf3Lv4iIYAD+00ccWQaKtNbdnEcmxIqSqylKDJSC1hMzC5Dpdr2OovxaIjRmU6Dj3YgEegIo/VqIHGfI+3ZON+/QragOWoO2qDNVTN+fRDEAAAA=",
+            "width": 1200,
+            "height": 640
+        },
+        "stays/machiya-nishijin-hero": {
+            "lqip": "data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAACQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JbACdMoRwAdCsxkhA2Q1vplTtwAAA/cXy3P640/RzdDzA5YqDkOZ9YfkKRNPNL7BgUJzS9ALvRSVgACPh9lbyXEkg+TjYGxjhp8eV0Q7UlmK/J9bzYKgazWZeM2QLpLfMt07yloVo/IhjcuqbzE5PZd39lvzm0xDMorwHMEjUSLSq447i4mFxfNW36cIAAAA=",
+            "width": 1200,
+            "height": 640
+        },
+        "stays/riad-zitoun-hero": {
+            "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAwBACdASoYAA0APu1iqU2ppaQiMAgBMB2JZQCsAB+MHKHPgEKS+y/XHwAA/uZ6cQUu3KJ35GOp3NfF0F6790dbqMVofuSNrmuxMdHXyV/o+1kJmliB1E1/qZaY9LM2IASYKdubQAA=",
+            "width": 1200,
+            "height": 640
+        }
+    }
+}

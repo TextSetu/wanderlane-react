@@ -1,0 +1,16 @@
+{
+    "_note": "The photography manifest: one Unsplash photo id per image slot. `pnpm photos` downloads these, crops them to the slot's aspect ratio, writes the committed WebP files under src/assets/img/, and regenerates content/credits.json from the live metadata so an attribution can never drift from the file it describes.",
+    "_licence": "Unsplash's free licence permits commercial use and modification with no attribution required. We attribute anyway. The fetch script REFUSES an Unsplash+ (premium) photo, whose licence is different and is not free.",
+    "_assets": "They live in src/assets/, not public/, so Vite content-hashes them into dist/assets — the one path the deploy workflow serves with `immutable`. A file in public/ would be revalidated on every load forever.",
+    "_alt": "⚠️ SWAPPING A PHOTO MEANS REWRITING ITS ALT TEXT. Alt text lives in the translation catalogue (messages/*.json), not here — it is copy, and it is translated like the rest. Nothing links the two.",
+    "_shared": "The ids are deliberately the same as wanderlane-next's, so the two demos look like one brand. The repositories stay independent: each carries its own manifest and its own copy of the files.",
+    "photos": {
+        "stays/riad-zitoun-hero": "Kloc39u0yhk",
+        "stays/machiya-nishijin-hero": "uMrKrQ-afIc",
+        "stays/alfama-atelier-hero": "Gk0MAP8A7Cw",
+
+        "cities/marrakech-card": "XeHV9a4ArdA",
+        "cities/kyoto-card": "jUxMsNZZCJ8",
+        "cities/lisbon-card": "1jWrspkfhPg"
+    }
+}

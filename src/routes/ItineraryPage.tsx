@@ -1,29 +1,62 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Card, Page } from '@/components/ui';
 import { itinerary, trips } from '@/data/trips';
+import { useRelativeTime } from '@/lib/preferences';
 
 export default function ItineraryPage() {
     const { t, i18n } = useTranslation(['itinerary', 'trips']);
+    const relative = useRelativeTime();
+    const [day, setDay] = useState<number | null>(null);
+
     const time = new Intl.DateTimeFormat(i18n.language, { timeStyle: 'short' });
     const trip = trips[0]!;
 
-    const days = [...new Set(itinerary.map((i) => i.day))];
+    const days = [...new Set(itinerary.map((item) => item.day))];
+    const shown = day === null ? itinerary : itinerary.filter((item) => item.day === day);
+    const shownDays = [...new Set(shown.map((item) => item.day))];
+
+    const chip = (active: boolean) =>
+        `rounded-full border px-3.5 py-1.5 text-sm transition ${
+            active
+                ? 'border-ink bg-ink text-sand-50'
+                : 'border-sand-200 bg-white text-ink-soft hover:border-sand-400'
+        }`;
 
     return (
         <Page
             title={t('itinerary:title')}
             intro={t('itinerary:intro', { stay: t(`trips:stays.${trip.stay}`) })}
         >
-            <div className="space-y-6">
-                {days.map((day) => (
-                    <div key={day}>
+            <div className="flex flex-wrap items-center gap-2">
+                <button type="button" onClick={() => setDay(null)} className={chip(day === null)}>
+                    {t('itinerary:filter.all')}
+                </button>
+                {days.map((value) => (
+                    <button
+                        key={value}
+                        type="button"
+                        onClick={() => setDay(value === day ? null : value)}
+                        className={chip(day === value)}
+                    >
+                        {t('itinerary:day', { number: value })}
+                    </button>
+                ))}
+                <span className="ms-auto text-sm text-sand-600" aria-live="polite">
+                    {t('itinerary:filter.showing', { count: shown.length })}
+                </span>
+            </div>
+
+            <div className="mt-8 space-y-6">
+                {shownDays.map((value) => (
+                    <div key={value}>
                         <h2 className="font-serif text-lg text-ink">
-                            {t('itinerary:day', { number: day })}
+                            {t('itinerary:day', { number: value })}
                         </h2>
                         <ul className="mt-3 space-y-3">
-                            {itinerary
-                                .filter((i) => i.day === day)
+                            {shown
+                                .filter((item) => item.day === value)
                                 .map((item) => (
                                     <li key={item.id}>
                                         <Card className="flex gap-4">
@@ -36,6 +69,11 @@ export default function ItineraryPage() {
                                                 </p>
                                                 <p className="mt-0.5 text-sm text-ink-soft">
                                                     {t(`itinerary:items.${item.key}.detail`)}
+                                                </p>
+                                                {/* Localized by `Intl.RelativeTimeFormat`,
+                                                    which needs no catalogue entry at all. */}
+                                                <p className="mt-1 text-xs text-sand-600">
+                                                    {relative(item.at)}
                                                 </p>
                                             </div>
                                         </Card>

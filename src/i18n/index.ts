@@ -112,50 +112,70 @@ i18n.on('languageChanged', (lng: string) => {
  * which is the right trade: silently swapping strings under a user who is
  * mid-sentence in a form is worse than being one release behind.
  */
+/** Release the loaded namespaces were last fetched at. */
+let appliedRelease: string | null = null;
+/** Set by `startManifestPolling`; the app's re-render hook. */
+let notify: (() => void) | null = null;
+
+async function checkOnce(): Promise<void> {
+    const manifest = await fetchManifest(true);
+    if (!manifest) return;
+
+    // The manifest may arrive after the language was resolved, which is the
+    // common case on a cold load — so re-apply direction now.
+    applyDocumentLanguage(i18n.language);
+
+    /**
+     * A new release only reaches the screen if the namespaces already in memory
+     * are re-read; i18next will not do it on its own, because as far as it is
+     * concerned they are loaded. `reloadResources` re-runs the backend for every
+     * loaded language/namespace pair — including the seeded `common`.
+     *
+     * Guarded on the release hash so an unchanged manifest, polled every five
+     * minutes, costs nothing. A failed reload leaves the previous copy in place
+     * rather than blanking the UI (verified), so this is safe to run unattended.
+     */
+    if (appliedRelease !== null && manifest.release.contentHash !== appliedRelease) {
+        otaLog(`release ${manifest.release.version} — refreshing loaded namespaces`);
+        await i18n.reloadResources().catch(() => {});
+    }
+    appliedRelease = manifest.release.contentHash;
+
+    notify?.();
+}
+
+/**
+ * Check now, on demand.
+ *
+ * ⚠️ Deliberately the SAME function the poll runs, not a second copy of it. Two
+ * code paths that both "check for updates" is how one of them quietly stops
+ * refreshing loaded namespaces while the other still does, and the difference
+ * only shows up as "it updates on its own but not when I press the button".
+ */
+export function checkForUpdates(): Promise<void> {
+    return checkOnce();
+}
+
+/**
+ * Re-read the manifest periodically so a language published while the app is
+ * open becomes selectable without a reload.
+ *
+ * Only the manifest is re-read on a poll where nothing changed — namespaces
+ * already loaded are refetched only when the release hash moves. Copy that
+ * changed mid-session lands then, or on the next language switch or reload.
+ */
 export function startManifestPolling(onUpdate: () => void): () => void {
     if (!OTA_ENABLED) {
         otaLog('disabled — serving the bundled copy only');
         return () => {};
     }
 
-    let stopped = false;
-    /** Release the loaded namespaces were last fetched at. */
-    let appliedRelease: string | null = null;
+    notify = onUpdate;
+    void checkOnce();
+    const timer = setInterval(() => void checkOnce(), OTA_POLL_MS);
 
-    const tick = async () => {
-        const manifest = await fetchManifest(true);
-        if (stopped || !manifest) return;
-
-        // The manifest may arrive after the language was resolved, which is the
-        // common case on a cold load — so re-apply direction now.
-        applyDocumentLanguage(i18n.language);
-
-        /**
-         * A new release only reaches the screen if the namespaces already in
-         * memory are re-read; i18next will not do it on its own, because as far
-         * as it is concerned they are loaded. `reloadResources` re-runs the
-         * backend for every loaded language/namespace pair — including the
-         * seeded `common`.
-         *
-         * Guarded on the release hash so an unchanged manifest, polled every
-         * five minutes, costs nothing. A failed reload leaves the previous copy
-         * in place rather than blanking the UI (verified), so this is safe to
-         * run unattended.
-         */
-        if (appliedRelease !== null && manifest.release.contentHash !== appliedRelease) {
-            otaLog(`release ${manifest.release.version} — refreshing loaded namespaces`);
-            await i18n.reloadResources().catch(() => {});
-        }
-        appliedRelease = manifest.release.contentHash;
-
-        if (stopped) return;
-        onUpdate();
-    };
-
-    void tick();
-    const timer = setInterval(() => void tick(), OTA_POLL_MS);
     return () => {
-        stopped = true;
+        notify = null;
         clearInterval(timer);
     };
 }

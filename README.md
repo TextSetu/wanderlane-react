@@ -204,6 +204,64 @@ Secrets: `PROD_AWS_ACCESS_KEY`, `PROD_AWS_SECRET_KEY`, `PROD_AWS_REGION`,
 - **Only `en` is committed.** Translations are owned by TextSetu, not authored
   here. Everything else arrives at runtime.
 
+
+## Photography
+
+The images under `src/assets/img/` are real Unsplash photographs, downloaded by
+a reproducible script rather than committed by hand:
+
+| File | Role |
+| --- | --- |
+| `content/photos.json` | The manifest: one Unsplash photo id per image slot. Edit this to swap a photo. |
+| `scripts/fetch-photos.mjs` | `pnpm photos`. Downloads, crops, writes the WebP files and regenerates the credits. |
+| `content/credits.json` | Generated. |
+
+Two things it refuses to do: download an Unsplash+ photo (a paid licence, whose
+metadata is indistinguishable from a free one's, in a public repository), and
+hand-write an attribution — photographer names come from the API response for
+the id being downloaded.
+
+⚠️ **They live in `src/assets/`, not `public/`.** Vite content-hashes anything
+imported from `src`, so the files land in `dist/assets` — the one prefix the
+deploy workflow serves with `immutable`. A photograph in `public/` is copied
+through verbatim and falls under the `max-age=0, must-revalidate` rule, which
+means a conditional request for it on every page load, forever.
+
+Alt text is not here. It lives in `messages/en.json` with every other string a
+reader can perceive, and it is translated like the rest.
+
+---
+
+## The interactive pieces, and what each one is for
+
+| Where | What it shows |
+| --- | --- |
+| **Trip cards** | `Intl.RelativeTimeFormat` picking the largest unit that fits, so a trip is "in 3 months" rather than "in 87 days". Expanding one loads the `itinerary` namespace on a screen that is not the itinerary — cross-namespace fetching, visible in the panel below. |
+| **Itinerary filter** | A live count through the locale's plural rule, on a number that changes as you click. |
+| **Message composer** | The one string on the page that must NOT be localized. A thread mixing catalogue copy with text a reader typed is where that line is easiest to blur. |
+| **Currency preference** (Profile) | Deliberately independent of the language. Someone reading in Japanese may still be paying in euros; the `locale === 'ja' ? 'JPY' : …` reflex restates every price in a currency nobody agreed to. `Intl.NumberFormat(language, { currency })` has always taken both, separately. |
+| **Delivery panel** (footer) | Every namespace load as it happens: which language, which module, how many bytes, and whether it came off the CDN or out of the bundle. `Bundled` everywhere means the CDN is unreachable and the app is quietly serving what it shipped with — the failure this whole architecture is otherwise silent about. |
+
+---
+
+## One trap this repo hit, and how it is handled
+
+A key added to `messages/en.json` does not exist on the CDN until CI has pushed
+it and someone has published. In between, the published module REPLACES the
+bundled one and the app renders the raw key path into the UI — observed as a
+button reading `labels.hidePlan`.
+
+`otaBackend.ts` lays the bundled copy **underneath** the published one, **for the
+source language only**. The bundle was compiled from the same commit as the code
+asking for the key, so for the source language it is by construction at least as
+new as the release on the CDN.
+
+⚠️ That argument does not extend to a target language, and the overlay must not
+either. A published module is the authoritative copy of its namespace; merging a
+stale bundle under a French release would resurrect keys that were deliberately
+deleted upstream.
+
+
 ## Licence
 
 MIT. See `LICENSE`.

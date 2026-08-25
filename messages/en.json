@@ -18,8 +18,24 @@
             "guests_other": "{{count}} guests"
         },
         "footer": {
-            "disclaimer": "Wanderlane is a fictional brand built as a public reference integration for TextSetu. Nothing here is bookable and no payment is ever taken.",
-            "release": "Serving content release v{{version}}."
+            "disclaimer": "Wanderlane is a fictional brand built as a public reference integration for TextSetu. Nothing here is bookable and no payment is ever taken."
+        },
+        "ota": {
+            "release": "Release v{{version}}",
+            "noManifest": "No manifest yet",
+            "namespaceCount": "{{count}} load",
+            "namespaceCount_other": "{{count}} loads",
+            "explainer": "Copy is published from TextSetu and fetched here at runtime, one namespace per screen. Move between tabs and watch each screen fetch its own. \"Bundled\" everywhere means the CDN could not be reached and the app is serving what it shipped with.",
+            "languages": "Languages in this release: {{list}}",
+            "nothingYet": "Nothing loaded yet.",
+            "checkNow": "Check for a new release",
+            "checking": "Checking…",
+            "source": {
+                "cdn": "CDN",
+                "bundled": "Bundled",
+                "missing": "Not published",
+                "error": "Failed"
+            }
         }
     },
     "trips": {
@@ -30,7 +46,10 @@
             "nights": "Length",
             "guests": "Guests",
             "total": "Total",
-            "reference": "Reference {{reference}}"
+            "reference": "Reference {{reference}}",
+            "showPlan": "Show {{count}} stop",
+            "showPlan_other": "Show {{count}} stops",
+            "hidePlan": "Hide the plan"
         },
         "status": {
             "confirmed": "Confirmed",
@@ -46,6 +65,14 @@
             "marrakech": "Marrakech, Morocco",
             "kyoto": "Kyoto, Japan",
             "lisbon": "Lisbon, Portugal"
+        },
+        "photoAlt": {
+            "riad-zitoun": "A riad courtyard seen from below, with arched windows and iron screens",
+            "machiya-nishijin": "A tatami room with a low table and floor chairs",
+            "alfama-atelier": "A white bedroom with a straw hat and sunglasses left on the bed",
+            "marrakech": "Cones of spice stacked on painted drums at a market stall",
+            "kyoto": "A paved path under autumn maples leading to a temple roof",
+            "lisbon": "Red-tiled rooftops falling away towards the river"
         }
     },
     "bookings": {
@@ -64,7 +91,14 @@
             "title": "Taxes and local charges",
             "body": "Prices include VAT where it applies. City tourist tax is collected at the property and is not included in the total shown."
         },
-        "note": "Every sentence on this screen lives in TextSetu. Change one, publish, and it arrives here on the next load — with no rebuild and no deploy."
+        "note": "Every sentence on this screen lives in TextSetu. Change one, publish, and it arrives here on the next load — with no rebuild and no deploy.",
+        "schedule": {
+            "title": "What is due, and when",
+            "deposit": "Deposit",
+            "balance": "Balance",
+            "balanceDue": "Balance due",
+            "note": "Worked out from the booking, not stored. Nothing on this site is payable."
+        }
     },
     "itinerary": {
         "title": "Itinerary",
@@ -91,6 +125,11 @@
                 "title": "Departure",
                 "detail": "Late checkout is usually possible in November — just ask the night before."
             }
+        },
+        "filter": {
+            "all": "Whole trip",
+            "showing": "{{count}} stop",
+            "showing_other": "{{count}} stops"
         }
     },
     "messages": {
@@ -105,7 +144,13 @@
             "arrival-time": "We land at 14:20, so probably at the house around four.",
             "airport-pickup": "Perfect. I will be there from a quarter to four. There is mint tea waiting."
         },
-        "note": "Messages are sample content and are not sent anywhere."
+        "note": "Messages are sample content and are not sent anywhere.",
+        "composer": {
+            "label": "Reply to your host",
+            "placeholder": "Ask about the key, the parking, anything.",
+            "hint": "Nothing is sent. Your text stays in this tab.",
+            "send": "Send"
+        }
     },
     "profile": {
         "title": "Profile",
@@ -121,6 +166,12 @@
             "languages": "Languages",
             "format": "Format",
             "offline": "No manifest has been read yet, so you are seeing the copy compiled into this build. That is the intended fallback, not an error."
+        },
+        "currency": {
+            "title": "Display currency",
+            "body": "Independent of the language you are reading in. Someone reading in Japanese may still be paying in euros.",
+            "sample": "A booking of 1,240 shows as {{amount}}.",
+            "note": "Presentation only. Nothing is converted here — the same amount is written a different way."
         }
     }
 }
