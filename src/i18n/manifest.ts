@@ -89,7 +89,13 @@ export async function fetchManifest(force = false): Promise<OtaManifest | null> 
 
             const body: unknown = await res.json().catch(() => null);
             if (!isManifest(body)) {
-                otaLog('response was not a manifest — using the last good copy');
+                // Most often this is an SPA host answering 200 with index.html
+                // for a URL that does not exist — see the note in config.ts.
+                otaLog(
+                    `${OTA_MANIFEST_URL} returned 200 but not a manifest ` +
+                        '(an app shell, an S3 error document, or a captive portal?) ' +
+                        '— using the last good copy',
+                );
                 return cached;
             }
 
