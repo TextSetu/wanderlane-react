@@ -35,7 +35,8 @@ ships with the app* and *copy is published*.
 
 // after: copy is published, and the manifest decides what exists
 .use(otaBackend)
-.init({ resources: { en }, partialBundledLanguages: true })
+.init({ resources: { en: { common: en.common } },   // the chrome only — see below
+        partialBundledLanguages: true })
 ```
 
 Two things fall out for free:
@@ -79,15 +80,27 @@ runtime         src/i18n/otaBackend.ts    per-namespace fetch from the manifest
                                           published just now becomes selectable
 ```
 
-`partialBundledLanguages: true` is load-bearing: without it i18next treats a
-language present in `resources` as fully bundled and never calls the backend, so
-the source language would silently stop receiving published updates while every
-other language received them.
+**Only `common` is seeded into `resources`, and that is the whole trick.**
+i18next never calls the backend for a namespace it already has. Seed the full
+catalogue and the source language is served entirely from the bundle — zero blob
+requests, no published update ever reaching an English reader — while every
+*other* language works perfectly. It is the hardest kind of bug to notice,
+because the feature looks alive.
 
-**Copy that changed mid-session lands on the next language switch or reload, not
-instantly.** Only the manifest is re-polled; namespaces already loaded are not
-refetched. Swapping strings under someone mid-sentence in a form is worse than
-being one release behind.
+So `common` (the chrome) is seeded, which lets the shell paint with no network on
+the critical path, and every other namespace is absent and therefore goes through
+the backend: lazily, per route, from the CDN. `partialBundledLanguages: true`
+is what tells i18next the seed is incomplete. The full catalogue is still
+compiled in — `otaBackend` serves it whenever the CDN cannot be reached, so the
+app works offline and during an outage.
+
+**A new release refreshes what is already on screen.** i18next will not re-read a
+namespace it considers loaded, so when the polled manifest reports a content hash
+different from the one currently applied, the app calls `i18n.reloadResources()`
+— which re-runs the backend for every loaded language/namespace pair, including
+the seeded `common`. It is guarded on the hash, so an unchanged manifest polled
+every five minutes costs nothing, and a failed reload leaves the previous copy in
+place rather than blanking the UI.
 
 ---
 
@@ -151,8 +164,14 @@ Secrets: `PROD_AWS_ACCESS_KEY`, `PROD_AWS_SECRET_KEY`, `PROD_AWS_REGION`,
 
 ## Things that will bite you
 
-- **`partialBundledLanguages`.** Omit it and your source language quietly stops
-  updating while every other language works — the hardest kind of bug to notice.
+- **Seeding the whole catalogue into `resources` kills the feature for your
+  source language.** i18next skips the backend for anything it already has, so
+  English is served from the bundle and never updates, while French does — which
+  looks like the integration working. Seed only what you need to paint, and let
+  the backend serve the rest.
+- **`reloadResources()` is what makes a mid-session release visible.** Without
+  it, a namespace loaded before the release stays on the old copy until a
+  language switch or a reload.
 - **`module` is nullable.** A distribution that is not split by module has one
   file per language and no namespace to match on. `blobUrlFor()` falls back to it
   rather than returning nothing.

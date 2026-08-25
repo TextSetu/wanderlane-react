@@ -52,17 +52,29 @@ void i18n
         load: 'languageOnly',
 
         /**
-         * The bundled copy: what renders before any network call resolves, and
-         * what the app degrades to if the CDN is unreachable. Published copy is
-         * layered ON TOP of this, never instead of it.
+         * ⚠️ ONLY `common`, and that is the whole trick.
+         *
+         * i18next never calls the backend for a namespace it already has. Seed
+         * the full catalogue here and the source language is served entirely
+         * from the bundle: zero blob requests, no published update ever
+         * reaching an English reader, while every OTHER language works — the
+         * hardest kind of bug to notice, because the feature looks alive.
+         * (Verified: with the full catalogue seeded, `read()` fired for `fr`
+         * and never once for `en`.)
+         *
+         * `common` is the chrome, so seeding it means the shell paints with no
+         * network on the critical path. Every other namespace is absent and
+         * therefore goes through the backend — lazily, per route, from the CDN —
+         * and `common` itself is refreshed by `reloadResources()` when a new
+         * release appears. The full bundled catalogue is still imported: the
+         * backend serves it when the CDN cannot be reached.
          */
-        resources: { [DEFAULT_LANGUAGE]: en },
+        resources: { [DEFAULT_LANGUAGE]: { [DEFAULT_NS]: en[DEFAULT_NS] } },
 
         /**
-         * ⚠️ Load-bearing. Without it i18next treats a language present in
-         * `resources` as fully bundled and never calls the backend — so the
-         * source language would silently stop receiving published updates while
-         * every other language received them.
+         * ⚠️ Load-bearing, and only meaningful because the seed above is
+         * partial: it tells i18next that `resources` is incomplete and the
+         * backend must be consulted for whatever is missing.
          */
         partialBundledLanguages: true,
 
@@ -107,12 +119,36 @@ export function startManifestPolling(onUpdate: () => void): () => void {
     }
 
     let stopped = false;
+    /** Release the loaded namespaces were last fetched at. */
+    let appliedRelease: string | null = null;
+
     const tick = async () => {
         const manifest = await fetchManifest(true);
         if (stopped || !manifest) return;
-        // The manifest may have arrived after the language was resolved, which
-        // is the common case on a cold load — so re-apply direction now.
+
+        // The manifest may arrive after the language was resolved, which is the
+        // common case on a cold load — so re-apply direction now.
         applyDocumentLanguage(i18n.language);
+
+        /**
+         * A new release only reaches the screen if the namespaces already in
+         * memory are re-read; i18next will not do it on its own, because as far
+         * as it is concerned they are loaded. `reloadResources` re-runs the
+         * backend for every loaded language/namespace pair — including the
+         * seeded `common`.
+         *
+         * Guarded on the release hash so an unchanged manifest, polled every
+         * five minutes, costs nothing. A failed reload leaves the previous copy
+         * in place rather than blanking the UI (verified), so this is safe to
+         * run unattended.
+         */
+        if (appliedRelease !== null && manifest.release.contentHash !== appliedRelease) {
+            otaLog(`release ${manifest.release.version} — refreshing loaded namespaces`);
+            await i18n.reloadResources().catch(() => {});
+        }
+        appliedRelease = manifest.release.contentHash;
+
+        if (stopped) return;
         onUpdate();
     };
 
