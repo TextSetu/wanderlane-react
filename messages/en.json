@@ -1,0 +1,126 @@
+{
+    "common": {
+        "appName": "Traveller app",
+        "nav": {
+            "trips": "Trips",
+            "bookings": "Bookings",
+            "itinerary": "Itinerary",
+            "messages": "Messages",
+            "profile": "Profile"
+        },
+        "locale": {
+            "switch": "Change language"
+        },
+        "units": {
+            "nights": "{{count}} night",
+            "nights_other": "{{count}} nights",
+            "guests": "{{count}} guest",
+            "guests_other": "{{count}} guests"
+        },
+        "footer": {
+            "disclaimer": "Wanderlane is a fictional brand built as a public reference integration for TextSetu. Nothing here is bookable and no payment is ever taken.",
+            "release": "Serving content release v{{version}}."
+        }
+    },
+    "trips": {
+        "title": "Your trips",
+        "intro": "Everything booked, and everything already travelled.",
+        "labels": {
+            "dates": "Dates",
+            "nights": "Length",
+            "guests": "Guests",
+            "total": "Total",
+            "reference": "Reference {{reference}}"
+        },
+        "status": {
+            "confirmed": "Confirmed",
+            "awaiting_balance": "Balance due",
+            "past": "Travelled"
+        },
+        "stays": {
+            "riad-zitoun": "Riad Zitoun",
+            "machiya-nishijin": "The Nishijin Machiya",
+            "alfama-atelier": "Alfama Atelier"
+        },
+        "cities": {
+            "marrakech": "Marrakech, Morocco",
+            "kyoto": "Kyoto, Japan",
+            "lisbon": "Lisbon, Portugal"
+        }
+    },
+    "bookings": {
+        "title": "Booking terms",
+        "intro": "The terms attached to your current bookings. Nothing here is payable — this is a demonstration app.",
+        "policy": {
+            "title": "Cancellation",
+            "body": "Cancel more than 14 days before arrival and your deposit is refunded in full. Inside 14 days we refund whatever we manage to re-let, and we will tell you either way within two working days.",
+            "updated": "Last changed 3 March 2026."
+        },
+        "balance": {
+            "title": "Balance",
+            "body": "The remaining 80% falls due 14 days before arrival. We will send a reminder seven days beforehand."
+        },
+        "taxes": {
+            "title": "Taxes and local charges",
+            "body": "Prices include VAT where it applies. City tourist tax is collected at the property and is not included in the total shown."
+        },
+        "note": "Every sentence on this screen lives in TextSetu. Change one, publish, and it arrives here on the next load — with no rebuild and no deploy."
+    },
+    "itinerary": {
+        "title": "Itinerary",
+        "intro": "Your plan for {{stay}}.",
+        "day": "Day {{number}}",
+        "items": {
+            "checkin": {
+                "title": "Arrival",
+                "detail": "Youssef will meet you at the derb entrance — the taxi cannot get closer."
+            },
+            "dinner": {
+                "title": "Dinner on the roof",
+                "detail": "Booked for four. Tell us in advance about anything you do not eat."
+            },
+            "bread-oven": {
+                "title": "The neighbourhood bread oven",
+                "detail": "An early start. Follow the dough from a family kitchen to the communal oven and back."
+            },
+            "souks": {
+                "title": "The souks, with Nadia",
+                "detail": "Three hours, ending at the dyers' quarter."
+            },
+            "checkout": {
+                "title": "Departure",
+                "detail": "Late checkout is usually possible in November — just ask the night before."
+            }
+        }
+    },
+    "messages": {
+        "title": "Messages",
+        "intro": "Your conversation with the host.",
+        "from": {
+            "host": "Youssef (host)",
+            "traveller": "You"
+        },
+        "items": {
+            "welcome": "Welcome! I have your dates for November. Let me know roughly what time you land and I will meet you at the derb.",
+            "arrival-time": "We land at 14:20, so probably at the house around four.",
+            "airport-pickup": "Perfect. I will be there from a quarter to four. There is mint tea waiting."
+        },
+        "note": "Messages are sample content and are not sent anywhere."
+    },
+    "profile": {
+        "title": "Profile",
+        "intro": "Your account, and how this app gets its copy.",
+        "language": {
+            "title": "Language",
+            "body": "You are reading this in “{{language}}”. Changing it in the switcher loads that language from the CDN — there is no reload and no deploy."
+        },
+        "delivery": {
+            "title": "Content delivery",
+            "distribution": "Distribution",
+            "release": "Release",
+            "languages": "Languages",
+            "format": "Format",
+            "offline": "No manifest has been read yet, so you are seeing the copy compiled into this build. That is the intended fallback, not an error."
+        }
+    }
+}

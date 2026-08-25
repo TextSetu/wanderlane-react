@@ -1,0 +1,36 @@
+name: CI
+
+on:
+    pull_request:
+
+jobs:
+    verify:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm typecheck
+            - run: pnpm build
+
+    i18n-gate:
+        runs-on: ubuntu-latest
+        # ⚠️ Required. A fork PR gets no secrets, so without this guard every
+        # external contribution to this PUBLIC repo fails with a confusing
+        # exit 3 ("token rejected") that looks like the contributor's fault.
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        steps:
+            - uses: actions/checkout@v4
+            - uses: TextSetu/github-action@v1
+              with:
+                  api_key: ${{ secrets.TEXTSETU_API_KEY }}
+                  cli_version: '1'
+                  upload_sources: false
+                  download_translations: false
+                  # Exit code 4 = "ran fine, not complete enough", and fails the
+                  # job. Distinct from exit 3, "token rejected".
+                  check_threshold: 90

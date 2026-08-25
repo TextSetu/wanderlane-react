@@ -1,0 +1,23 @@
+name: Push sources to TextSetu
+
+on:
+    push:
+        branches: [main]
+        paths:
+            - 'messages/en.json'
+            - 'textsetu.json'
+
+jobs:
+    push:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: TextSetu/github-action@v1
+              with:
+                  api_key: ${{ secrets.TEXTSETU_API_KEY }}
+                  # ⚠️ Pinned. A demo repo that breaks because a CLI release
+                  # changed behaviour is the worst possible advert.
+                  cli_version: '1'
+                  upload_sources: true
+                  download_translations: false
+                  create_pull_request: false

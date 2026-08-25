@@ -1,0 +1,37 @@
+name: Pull translations from TextSetu
+
+# ⚠️ This app reads translations at RUNTIME, so this workflow is not what makes
+# a language appear — publishing is. It refreshes only the SOURCE-LANGUAGE
+# baseline compiled into the bundle (`messages/en.json`), which is what renders
+# before the first manifest read and what the app falls back to if the CDN is
+# unreachable. Letting that drift is how a "safe fallback" quietly becomes a
+# year-old one.
+on:
+    schedule:
+        - cron: '0 6 * * 1'
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    pull:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: TextSetu/github-action@v1
+              with:
+                  api_key: ${{ secrets.TEXTSETU_API_KEY }}
+                  cli_version: '1'
+                  upload_sources: false
+                  download_translations: true
+                  download_status: approved
+                  create_pull_request: true
+                  localization_branch_name: l10n_textsetu
+                  pull_request_title: 'chore(i18n): refresh the bundled baseline'
+                  pull_request_labels: 'i18n,automated'
+                  # ⚠️ A PR opened with the default GITHUB_TOKEN triggers NO
+                  # workflows — deliberate loop protection in GitHub — which
+                  # would leave this PR with no CI at all. A PAT restores it.
+                  github_token: ${{ secrets.WORKFLOW_PAT }}

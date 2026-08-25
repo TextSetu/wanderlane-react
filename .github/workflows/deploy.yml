@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+    push:
+        branches: [main]
+    workflow_dispatch:
+
+concurrency:
+    group: deploy
+    cancel-in-progress: false
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: pnpm/action-setup@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+                  cache: pnpm
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm build
+              env:
+                  VITE_OTA_MANIFEST_URL: ${{ vars.OTA_MANIFEST_URL }}
+
+            - uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  aws-access-key-id: ${{ secrets.PROD_AWS_ACCESS_KEY }}
+                  aws-secret-access-key: ${{ secrets.PROD_AWS_SECRET_KEY }}
+                  aws-region: ${{ secrets.PROD_AWS_REGION }}
+
+            # ⚠️ Assets BEFORE index.html, deliberately. Every asset filename is
+            # content-hashed, so uploading them first means the new index.html
+            # never references a file that is not there yet. The reverse order
+            # leaves a window where visitors get a white screen.
+            - name: Upload hashed assets
+              run: |
+                  aws s3 sync dist/assets "s3://${{ secrets.PROD_AWS_S3_BUCKET }}/assets" \
+                    --cache-control "public,max-age=31536000,immutable"
+
+            - name: Upload the shell
+              run: |
+                  aws s3 sync dist "s3://${{ secrets.PROD_AWS_S3_BUCKET }}" --delete \
+                    --exclude "assets/*" \
+                    --cache-control "public,max-age=0,must-revalidate"
+
+            - name: Invalidate
+              run: |
+                  aws cloudfront create-invalidation \
+                    --distribution-id "${{ secrets.PROD_AWS_DISTRIBUTION }}" \
+                    --paths "/*"

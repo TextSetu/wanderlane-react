@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@theme {
+    --color-ink: #0f2a3d;
+    --color-ink-soft: #1d3f56;
+    --color-sea: #2f7d8c;
+    --color-sea-deep: #1f5b66;
+    --color-sand-50: #fbf8f3;
+    --color-sand-100: #f4ede2;
+    --color-sand-200: #e7dac6;
+    --color-sand-400: #bda67f;
+    --color-sand-600: #8a6f47;
+
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-serif: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    --radius-card: 0.75rem;
+    --shadow-card: 0 1px 2px rgb(15 42 61 / 0.06), 0 8px 24px rgb(15 42 61 / 0.08);
+}
+
+/*
+ * Keyed off the ATTRIBUTE, which `src/i18n/index.ts` mutates on
+ * `languageChanged`. There is no build-time locale here to key off instead.
+ */
+[dir='rtl'] {
+    --font-sans: 'Noto Sans Arabic', 'Geeza Pro', 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+    background: var(--color-sand-50);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+}

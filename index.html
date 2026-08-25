@@ -1,0 +1,28 @@
+<!doctype html>
+<!--
+  ⚠️ `lang` and `dir` are placeholders, and that is the point of this repo.
+
+  Unlike the statically exported sibling (wanderlane-next), an SPA has no
+  prerendered per-locale HTML — the shell is one document served to everybody.
+  `src/i18n/index.ts` sets both attributes from the manifest's `languageDetails`
+  once i18next resolves a language, which is what lets a language published
+  minutes ago appear with no rebuild and no deploy.
+
+  The trade-off is honest and stated in the README: a crawler that does not run
+  JavaScript sees this document, in English, for every language.
+-->
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wanderlane — your trips</title>
+        <meta
+            name="description"
+            content="The Wanderlane traveller app: trips, bookings and itineraries."
+        />
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "$schema": "https://docs.textsetu.com/schema/textsetu-1.json",
+    "version": 1,
+    "projectId": "REPLACE_WITH_WANDERLANE_REACT_PROJECT_ID",
+    "sourceLocale": "en",
+    "files": [
+        {
+            "format": "i18next",
+            "path": "messages/[locale].json"
+        }
+    ]
+}
