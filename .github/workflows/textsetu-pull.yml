@@ -23,15 +23,27 @@ jobs:
             - uses: TextSetu/github-action@v1
               with:
                   api_key: ${{ secrets.TEXTSETU_API_KEY }}
-                  cli_version: '1'
+                  # ⚠️ The CLI's version, NOT the action's `@v1` tag — they
+                  # are released independently, and the CLI is still 0.x, so
+                  # '1' resolves to nothing and npm fails with ETARGET.
+                  cli_version: '0.1'
                   upload_sources: false
                   download_translations: true
                   download_status: approved
                   create_pull_request: true
                   localization_branch_name: l10n_textsetu
                   pull_request_title: 'chore(i18n): refresh the bundled baseline'
-                  pull_request_labels: 'i18n,automated'
+                  # ⚠️ No labels. `gh pr create --label` fails on a label the
+                  # repo does not have, and it fails BEFORE creating the PR — so
+                  # 'i18n,automated' (neither exists here) cost the whole PR
+                  # every run, with the branch already pushed. Create them under
+                  # Issues -> Labels to bring them back.
                   # ⚠️ A PR opened with the default GITHUB_TOKEN triggers NO
                   # workflows — deliberate loop protection in GitHub — which
                   # would leave this PR with no CI at all. A PAT restores it.
-                  github_token: ${{ secrets.WORKFLOW_PAT }}
+                  # ⚠️ Accepts either secret name: an unset secret resolves
+                  # to an empty string, which is falsy, so this picks whichever
+                  # exists. If NEITHER is set this fails at `gh` with exit 4 —
+                  # deliberately, rather than falling back to github.token and
+                  # quietly opening a PR that no CI ever checks.
+                  github_token: ${{ secrets.GH_TOKEN || secrets.WORKFLOW_PAT }}
