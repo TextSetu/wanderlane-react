@@ -1,0 +1,179 @@
+{
+  "bookings": {
+    "balance": {
+      "body": "Les 80 % restants deviennent exigibles 14 jours avant l'arrivée. Nous vous enverrons un rappel sept jours avant l'échéance.",
+      "title": "Solde"
+    },
+    "intro": "Les conditions liées à vos réservations actuelles. Rien n'est à payer ici — c'est une application de démonstration.",
+    "note": "Chaque phrase de cet écran vit dans TextSetu. Modifiez-en une, publiez, et elle arrive ici au prochain chargement — sans reconstruction ni déploiement.",
+    "policy": {
+      "body": "Annulez plus de 14 jours avant l'arrivée et votre acompte est remboursé intégralement. Dans les 14 jours, nous remboursons tout ce que nous parvenons à relouer, et nous vous le ferons savoir, quel que soit le cas, sous deux jours ouvrés.",
+      "title": "Annulation",
+      "updated": "Dernière modification le 3 mars 2026."
+    },
+    "schedule": {
+      "balance": "Solde",
+      "balanceDue": "Solde dû",
+      "deposit": "Acompte",
+      "note": "Calculé à partir de la réservation, non stocké. Rien n'est payable sur ce site.",
+      "title": "Ce qui est dû, et quand"
+    },
+    "taxes": {
+      "body": "Les prix incluent la TVA le cas échéant. La taxe de séjour est perçue sur place et n'est pas incluse dans le total affiché.",
+      "title": "Taxes et frais locaux"
+    },
+    "title": "Conditions de réservation"
+  },
+  "common": {
+    "appName": "Application Voyageur",
+    "footer": {
+      "disclaimer": "Wanderlane est une marque fictive créée comme intégration de référence publique pour TextSetu. Rien ici n'est réservable et aucun paiement n'est jamais effectué.",
+      "release": "Contenu diffusé : version v{{version}}."
+    },
+    "locale": {
+      "switch": "Changer de langue"
+    },
+    "nav": {
+      "bookings": "Réservations",
+      "itinerary": "Itinéraire",
+      "messages": "Messages",
+      "profile": "Profil",
+      "trips": "Voyages"
+    },
+    "ota": {
+      "checking": "Vérification…",
+      "checkNow": "Rechercher une nouvelle version",
+      "explainer": "Les textes sont publiés depuis TextSetu et récupérés ici à l'exécution, un espace de noms par écran. Passez d'un onglet à l'autre et regardez chaque écran récupérer les siens. \"Bundled\" partout signifie que le CDN n'a pas pu être atteint et que l'application sert le contenu embarqué.",
+      "languages": "Langues dans cette version : {{list}}",
+      "namespaceCount": "{{count}} chargement",
+      "namespaceCount_other": "{{count}} chargements",
+      "noManifest": "Pas encore de manifeste",
+      "nothingYet": "Rien n'a encore été chargé.",
+      "release": "Version v{{version}}",
+      "source": {
+        "bundled": "Groupé",
+        "cdn": "CDN",
+        "error": "Échec",
+        "missing": "Non publié"
+      }
+    },
+    "units": {
+      "guests": "{{count}} invité",
+      "guests_other": "{{count}} invités",
+      "nights": "{{count}} nuit",
+      "nights_other": "{{count}} nuits"
+    }
+  },
+  "itinerary": {
+    "day": "Jour {{number}}",
+    "filter": {
+      "all": "Tout le voyage",
+      "showing": "{{count}} arrêt",
+      "showing_other": "{{count}} arrêts"
+    },
+    "intro": "Votre plan pour {{stay}}.",
+    "items": {
+      "bread-oven": {
+        "detail": "Un départ matinal. Suivez la pâte d'une cuisine familiale au four commun et retour.",
+        "title": "Le four à pain du quartier"
+      },
+      "checkin": {
+        "detail": "Youssef vous attendra à l'entrée du derb — le taxi ne peut pas s'approcher davantage.",
+        "title": "Arrivée"
+      },
+      "checkout": {
+        "detail": "Le départ tardif est généralement possible en novembre — il suffit de demander la veille.",
+        "title": "Départ"
+      },
+      "dinner": {
+        "detail": "Réservé pour quatre. Prévenez-nous à l'avance de tout ce que vous ne mangez pas.",
+        "title": "Dîner sur le toit"
+      },
+      "souks": {
+        "detail": "Trois heures, se terminant au quartier des teinturiers.",
+        "title": "Les souks, avec Nadia"
+      }
+    },
+    "localTime": "Toutes les heures sont locales au séjour ({{zone}}).",
+    "title": "Itinéraire"
+  },
+  "messages": {
+    "composer": {
+      "hint": "Rien n'est envoyé. Votre texte reste dans cet onglet.",
+      "label": "Répondre à votre hôte",
+      "placeholder": "Renseignez-vous sur la clé, le parking, tout ce que vous voulez.",
+      "send": "Envoyer"
+    },
+    "from": {
+      "host": "Youssef (hôte)",
+      "traveller": "Vous"
+    },
+    "intro": "Votre conversation avec l'hôte.",
+    "items": {
+      "airport-pickup": "Parfait. J'y serai dès quatre heures moins le quart. Du thé à la menthe vous attend.",
+      "arrival-time": "Nous atterrissons à 14h20, donc probablement à la maison vers quatre heures.",
+      "welcome": "Bienvenue ! J'ai vos dates pour novembre. Faites-moi savoir à peu près à quelle heure vous atterrissez et je vous retrouverai au derb."
+    },
+    "note": "Les messages sont des contenus d'exemple et ne sont envoyés nulle part.",
+    "title": "Messages"
+  },
+  "profile": {
+    "currency": {
+      "body": "Indépendante de la langue dans laquelle vous lisez. Une personne lisant en japonais peut toujours payer en euros.",
+      "note": "Présentation uniquement. Rien n'est converti ici — le même montant est écrit d'une manière différente.",
+      "sample": "Une réservation de 1 240 s'affiche comme {{amount}}.",
+      "title": "Devise d'affichage"
+    },
+    "delivery": {
+      "distribution": "Distribution",
+      "format": "Format",
+      "languages": "Langues",
+      "offline": "Aucun manifeste n'a encore été lu, vous voyez donc le contenu compilé dans cette version. C'est le repli prévu, pas une erreur.",
+      "release": "Version",
+      "title": "Livraison de contenu"
+    },
+    "intro": "Votre compte, et comment cette application obtient son contenu.",
+    "language": {
+      "body": "Vous lisez ceci en « {{language}} ». La changer dans le sélecteur charge cette langue depuis le CDN — ni rechargement, ni déploiement.",
+      "title": "Langue"
+    },
+    "title": "Profil"
+  },
+  "trips": {
+    "cities": {
+      "kyoto": "Kyoto, Japon",
+      "lisbon": "Lisbonne, Portugal",
+      "marrakech": "Marrakech, Maroc"
+    },
+    "intro": "Tout réservé, et tout déjà parcouru.",
+    "labels": {
+      "dates": "Dates",
+      "guests": "Voyageurs",
+      "hidePlan": "Masquer le plan",
+      "nights": "Durée",
+      "reference": "Référence {{reference}}",
+      "showPlan": "Afficher {{count}} étape",
+      "showPlan_other": "Afficher les {{count}} étapes",
+      "total": "Total"
+    },
+    "photoAlt": {
+      "alfama-atelier": "Une chambre blanche avec un chapeau de paille et des lunettes de soleil laissés sur le lit.",
+      "kyoto": "Un chemin pavé sous des érables d'automne menant au toit d'un temple.",
+      "lisbon": "Toits de tuiles rouges dévalant vers la rivière",
+      "machiya-nishijin": "Une pièce en tatami avec une table basse et des chaises au sol",
+      "marrakech": "Des cônes d'épices empilés sur des tambours peints dans un étal de marché",
+      "riad-zitoun": "Cour d'un riad vue d'en bas, avec des fenêtres cintrées et des grilles en fer"
+    },
+    "status": {
+      "awaiting_balance": "Solde dû",
+      "confirmed": "Confirmé",
+      "past": "Voyagé"
+    },
+    "stays": {
+      "alfama-atelier": "Alfama Atelier",
+      "machiya-nishijin": "La machiya de Nishijin",
+      "riad-zitoun": "Riad Zitoun"
+    },
+    "title": "Vos voyages"
+  }
+}
