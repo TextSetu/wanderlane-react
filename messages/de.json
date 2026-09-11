@@ -1,0 +1,179 @@
+{
+  "bookings": {
+    "balance": {
+      "body": "Die restlichen 80 % sind 14 Tage vor der Anreise fällig. Wir senden sieben Tage vorher eine Erinnerung.",
+      "title": "Saldo"
+    },
+    "intro": "Die Bedingungen für Ihre aktuellen Buchungen. Hier ist nichts zu zahlen – dies ist eine Demo-App.",
+    "note": "Jeder Satz auf diesem Bildschirm lebt in TextSetu. Ändere einen, veröffentliche ihn, und er erscheint hier beim nächsten Laden — ohne Rebuild und ohne Deploy.",
+    "policy": {
+      "body": "Stornieren Sie mehr als 14 Tage vor der Anreise, wird Ihre Anzahlung vollständig erstattet. Innerhalb von 14 Tagen erstatten wir, was wir erneut vermieten können, und wir informieren Sie in jedem Fall innerhalb von zwei Werktagen.",
+      "title": "Stornierung",
+      "updated": "Zuletzt geändert am 3. März 2026."
+    },
+    "schedule": {
+      "balance": "Restbetrag",
+      "balanceDue": "Restbetrag",
+      "deposit": "Anzahlung",
+      "note": "Aus der Buchung berechnet, nicht gespeichert. Auf dieser Website ist nichts zahlungspflichtig.",
+      "title": "Was fällig ist, und wann"
+    },
+    "taxes": {
+      "body": "Preise verstehen sich inklusive Mehrwertsteuer, sofern zutreffend. Die Kurtaxe wird vor Ort erhoben und ist im angezeigten Gesamtpreis nicht enthalten.",
+      "title": "Steuern und lokale Gebühren"
+    },
+    "title": "Buchungsbedingungen"
+  },
+  "common": {
+    "appName": "Traveller App",
+    "footer": {
+      "disclaimer": "Wanderlane ist eine fiktive Marke, die als öffentliche Referenzintegration für TextSetu erstellt wurde. Hier ist nichts buchbar, und es wird niemals eine Zahlung eingezogen.",
+      "release": "Liefert Content-Release v{{version}}."
+    },
+    "locale": {
+      "switch": "Sprache ändern"
+    },
+    "nav": {
+      "bookings": "Buchungen",
+      "itinerary": "Reiseplan",
+      "messages": "Nachrichten",
+      "profile": "Profil",
+      "trips": "Reisen"
+    },
+    "ota": {
+      "checking": "Wird geprüft…",
+      "checkNow": "Nach einer neuen Version suchen",
+      "explainer": "Texte werden aus TextSetu veröffentlicht und hier zur Laufzeit abgerufen, ein Namespace pro Bildschirm. Wechsle zwischen den Tabs und beobachte, wie jeder Bildschirm seinen eigenen abruft. „Bundled“ überall bedeutet, dass das CDN nicht erreichbar war und die App das ausliefert, womit sie ausgeliefert wurde.",
+      "languages": "Sprachen in diesem Release: {{list}}",
+      "namespaceCount": "{{count}} Ladevorgang",
+      "namespaceCount_other": "{{count}} Ladevorgänge",
+      "noManifest": "Noch kein Manifest",
+      "nothingYet": "Noch nichts geladen.",
+      "release": "Release v{{version}}",
+      "source": {
+        "bundled": "Gebündelt",
+        "cdn": "CDN",
+        "error": "Fehlgeschlagen",
+        "missing": "Nicht veröffentlicht"
+      }
+    },
+    "units": {
+      "guests": "{{count}} Gast",
+      "guests_other": "{{count}} Gäste",
+      "nights": "{{count}} Nacht",
+      "nights_other": "{{count}} Nächte"
+    }
+  },
+  "itinerary": {
+    "day": "Tag {{number}}",
+    "filter": {
+      "all": "Gesamte Reise",
+      "showing": "{{count}} Stopp",
+      "showing_other": "{{count}} Stopps"
+    },
+    "intro": "Dein Plan für {{stay}}.",
+    "items": {
+      "bread-oven": {
+        "detail": "Ein früher Start. Begleiten Sie den Teig von einer Familienküche bis zum Gemeinschaftsofen und zurück.",
+        "title": "Der Brotofen des Viertels"
+      },
+      "checkin": {
+        "detail": "Youssef wird Sie am Eingang der Derb treffen — das Taxi kommt nicht näher heran.",
+        "title": "Ankunft"
+      },
+      "checkout": {
+        "detail": "Ein später Check-out ist im November meist möglich – fragen Sie einfach am Vorabend nach.",
+        "title": "Abreise"
+      },
+      "dinner": {
+        "detail": "Für vier Personen gebucht. Teilen Sie uns im Voraus mit, was Sie nicht essen.",
+        "title": "Abendessen auf dem Dach"
+      },
+      "souks": {
+        "detail": "Drei Stunden, endet im Viertel der Färber.",
+        "title": "Die Souks, mit Nadia"
+      }
+    },
+    "localTime": "Alle Zeiten entsprechen der Ortszeit des Aufenthaltsorts ({{zone}}).",
+    "title": "Reiseplan"
+  },
+  "messages": {
+    "composer": {
+      "hint": "Es wird nichts gesendet. Ihr Text bleibt in diesem Tab.",
+      "label": "Antwort an deinen Gastgeber",
+      "placeholder": "Fragen Sie nach dem Schlüssel, dem Parkplatz, was immer Sie wissen möchten.",
+      "send": "Senden"
+    },
+    "from": {
+      "host": "Youssef (Gastgeber)",
+      "traveller": "Du"
+    },
+    "intro": "Ihr Gespräch mit dem Gastgeber.",
+    "items": {
+      "airport-pickup": "Perfekt. Ich bin ab Viertel vor vier da. Es wartet Minztee.",
+      "arrival-time": "Wir landen um 14:20 Uhr, also wahrscheinlich gegen vier im Haus.",
+      "welcome": "Willkommen! Ich habe deine Daten für November. Gib mir einfach kurz Bescheid, wann du ungefähr landest, dann treffen wir uns am Derb."
+    },
+    "note": "Nachrichten sind Beispielinhalte und werden nirgendwohin gesendet.",
+    "title": "Nachrichten"
+  },
+  "profile": {
+    "currency": {
+      "body": "Unabhängig von der Sprache, in der du liest. Jemand, der auf Japanisch liest, kann trotzdem in Euro bezahlen.",
+      "note": "Nur zur Anzeige. Hier wird nichts umgerechnet — derselbe Betrag wird nur anders geschrieben.",
+      "sample": "Eine Buchung über 1.240 wird als {{amount}} angezeigt.",
+      "title": "Anzeigewährung"
+    },
+    "delivery": {
+      "distribution": "Verteilung",
+      "format": "Format",
+      "languages": "Sprachen",
+      "offline": "Es wurde noch kein Manifest gelesen, daher sehen Sie die in diesen Build kompilierten Texte. Das ist das vorgesehene Fallback, kein Fehler.",
+      "release": "Release",
+      "title": "Inhaltsbereitstellung"
+    },
+    "intro": "Ihr Konto – und wie diese App zu ihren Texten kommt.",
+    "language": {
+      "body": "Sie lesen dies gerade auf „{{language}}“. Wenn Sie es im Umschalter ändern, wird diese Sprache vom CDN geladen — ohne Neuladen und ohne Deployment.",
+      "title": "Sprache"
+    },
+    "title": "Profil"
+  },
+  "trips": {
+    "cities": {
+      "kyoto": "Kyoto, Japan",
+      "lisbon": "Lissabon, Portugal",
+      "marrakech": "Marrakesch, Marokko"
+    },
+    "intro": "Alles gebucht, und alles schon bereist.",
+    "labels": {
+      "dates": "Daten",
+      "guests": "Gäste",
+      "hidePlan": "Plan ausblenden",
+      "nights": "Dauer",
+      "reference": "Referenz {{reference}}",
+      "showPlan": "{{count}} Stopp anzeigen",
+      "showPlan_other": "{{count}} Stopps anzeigen",
+      "total": "Gesamt"
+    },
+    "photoAlt": {
+      "alfama-atelier": "Ein weißes Schlafzimmer mit einem Strohhut und einer Sonnenbrille auf dem Bett",
+      "kyoto": "Ein gepflasterter Weg unter herbstlichen Ahornbäumen, der zu einem Tempeldach führt",
+      "lisbon": "Rot gedeckte Dächer, die zum Fluss hin abfallen",
+      "machiya-nishijin": "Ein Tatami-Zimmer mit niedrigem Tisch und Bodenstühlen",
+      "marrakech": "Gewürzkegel gestapelt auf bemalten Fässern an einem Marktstand",
+      "riad-zitoun": "Ein Riad-Innenhof von unten gesehen, mit Bogenfenstern und schmiedeeisernen Gittern"
+    },
+    "status": {
+      "awaiting_balance": "Restbetrag fällig",
+      "confirmed": "Bestätigt",
+      "past": "Gereist"
+    },
+    "stays": {
+      "alfama-atelier": "Alfama Atelier",
+      "machiya-nishijin": "Das Nishijin Machiya",
+      "riad-zitoun": "Riad Zitoun"
+    },
+    "title": "Deine Reisen"
+  }
+}
